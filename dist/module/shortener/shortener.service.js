@@ -1,113 +1,108 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ShortenerService = void 0;
-const data_source_1 = require("../../config/data-source");
-const shortener_entity_1 = require("./entities/shortener.entity");
+// src/module/shortener/shortener.service.ts
+const shortener_model_1 = __importDefault(require("./models/shortener.model"));
+const shortener_visit_model_1 = __importDefault(require("./models/shortener-visit.model"));
 const nanoid_1 = require("nanoid");
-const shortener_visit_entity_1 = require("./entities/shortener-visit.entity");
+const mongoose_1 = require("mongoose");
 class ShortenerService {
-    constructor() {
-        this.repo = data_source_1.AppDataSource.getRepository(shortener_entity_1.ShortenerEntity);
-        this.visitRepo = data_source_1.AppDataSource.getRepository(shortener_visit_entity_1.ShortenerVisitEntity);
-    }
     async findAll() {
-        return await this.repo.find();
+        return await shortener_model_1.default.find();
     }
     async findAllSelect() {
-        return await this.repo.find({
-            select: ["backHalf", "destination"],
-        });
+        return await shortener_model_1.default.find().select("backHalf destination");
     }
     async findAllFilter(params = {}) {
         const { page, limit, search, dateVisitFrom, dateVisitTo, sortVisitCount } = params;
-        const query = this.repo.createQueryBuilder("shortener").leftJoinAndSelect("shortener.visits", "visit");
+        const baseQuery = {};
         if (search) {
-            query.andWhere("LOWER(shortener.backHalf) LIKE :search", {
-                search: `%${search.toLowerCase()}%`,
-            });
+            baseQuery.backHalf = { $regex: search, $options: "i" };
         }
-        // Obtener todos los resultados
-        const [results] = await query.getManyAndCount();
+        const shorteners = await shortener_model_1.default.find(baseQuery);
         const fromDate = dateVisitFrom ? new Date(dateVisitFrom) : new Date(Date.now() - 24 * 60 * 60 * 1000);
         const toDate = dateVisitTo ? new Date(dateVisitTo) : new Date();
-        const filteredResults = results.map((shortener) => {
-            let filteredVisits = shortener.visits ?? [];
-            filteredVisits = filteredVisits.filter((v) => {
-                const visitedAt = new Date(v.visitedAt);
-                return visitedAt >= fromDate && visitedAt <= toDate;
+        const results = await Promise.all(shorteners.map(async (short) => {
+            const visits = await shortener_visit_model_1.default.find({
+                shortenerId: short._id,
+                visitedAt: { $gte: fromDate, $lte: toDate },
             });
             return {
-                ...shortener,
-                visits: filteredVisits,
-                visitCount: filteredVisits.length,
+                ...short.toObject(),
+                visits,
+                visitCount: visits.length,
             };
-        });
-        // Ordenar si se solicitó
+        }));
+        // Ordenar
         if (sortVisitCount === "ASC") {
-            filteredResults.sort((a, b) => a.visitCount - b.visitCount);
+            results.sort((a, b) => a.visitCount - b.visitCount);
         }
         else if (sortVisitCount === "DESC") {
-            filteredResults.sort((a, b) => b.visitCount - a.visitCount);
+            results.sort((a, b) => b.visitCount - a.visitCount);
         }
-        // 👇 Si page o limit no vienen definidos, devolver todo
         if (!page || !limit) {
             return {
                 page: 1,
                 totalPages: 1,
-                totalItems: filteredResults.length,
+                totalItems: results.length,
                 hasMore: false,
-                results: filteredResults,
+                results,
             };
         }
         const skip = (page - 1) * limit;
-        const paginatedResults = filteredResults.slice(skip, skip + limit);
+        const paginated = results.slice(skip, skip + limit);
         return {
             page,
-            totalPages: Math.ceil(filteredResults.length / limit),
-            totalItems: filteredResults.length,
-            hasMore: page * limit < filteredResults.length,
-            results: paginatedResults,
+            totalPages: Math.ceil(results.length / limit),
+            totalItems: results.length,
+            hasMore: page * limit < results.length,
+            results: paginated,
         };
     }
     async create(destination, backHalf) {
-        const backHalfResult = backHalf || (0, nanoid_1.nanoid)(6);
-        // Verificar si ya existe ese código
-        const exists = await this.repo.findOneBy({ backHalf: backHalfResult });
-        if (exists) {
+        const backHalfValue = backHalf || (0, nanoid_1.nanoid)(6);
+        const exists = await shortener_model_1.default.findOne({ backHalf: backHalfValue });
+        if (exists)
             throw new Error("Short code already in use");
-        }
-        const short = this.repo.create({ backHalf: backHalfResult, destination });
-        return await this.repo.save(short);
+        const short = new shortener_model_1.default({ backHalf: backHalfValue, destination });
+        return await short.save();
     }
     async findByCode(code) {
-        return await this.repo.findOneBy({ backHalf: code });
+        return await shortener_model_1.default.findOne({ backHalf: code });
     }
     async findOne(id) {
-        return await this.repo.findOneBy({ id });
-    }
-    async remove(id) {
-        const result = await this.repo.delete(id);
-        return result.affected !== 0;
+        return await shortener_model_1.default.findById(id);
     }
     async update(id, data) {
-        const record = await this.repo.findOneBy({ id });
+        console.log("id:", id);
+        console.log("data:", data);
+        const record = await shortener_model_1.default.findById(id);
         if (!record)
             return null;
-        // Si el código personalizado cambia, verificar si ya existe
         if (data.backHalf && data.backHalf !== record.backHalf) {
-            const exists = await this.repo.findOneBy({ backHalf: data.backHalf });
+            const exists = await shortener_model_1.default.findOne({ backHalf: data.backHalf });
             if (exists)
                 throw new Error("Custom code already in use");
             record.backHalf = data.backHalf;
         }
-        if (data.destination) {
+        if (data.destination)
             record.destination = data.destination;
-        }
-        return await this.repo.save(record);
+        return await record.save();
+    }
+    async remove(id) {
+        const result = await shortener_model_1.default.deleteOne({ _id: id });
+        return result.deletedCount !== 0;
     }
     async registerVisit(shortenerId, data) {
-        const visit = this.visitRepo.create({ ...data, shortenerId });
-        return this.visitRepo.save(visit);
+        const visit = new shortener_visit_model_1.default({
+            ...data,
+            shortenerId: new mongoose_1.Types.ObjectId(shortenerId),
+            visitedAt: new Date(),
+        });
+        return await visit.save();
     }
 }
 exports.ShortenerService = ShortenerService;

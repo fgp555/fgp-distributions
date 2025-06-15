@@ -17,6 +17,7 @@ const seed_routes_1 = __importDefault(require("./seed/seed.routes"));
 require("./module/auth/google/passport.config"); // 👈 importa estrategia
 const shortener_controller_1 = require("./module/shortener/shortener.controller");
 const database_routes_1 = __importDefault(require("./module/database/database.routes"));
+const mongoose_routes_1 = __importDefault(require("./module/database/mongoose/mongoose.routes"));
 const email_routes_1 = __importDefault(require("./module/mail/email.routes"));
 const info_routes_1 = __importDefault(require("./module/info/info.routes"));
 const options_routes_1 = __importDefault(require("./module/options/options.routes"));
@@ -54,6 +55,7 @@ app.use(passport_1.default.initialize());
 app.use(passport_1.default.session());
 app.use("/api/auth", index_routes_4.default);
 app.use("/api/db", database_routes_1.default);
+app.use("/api/mongoose", mongoose_routes_1.default);
 app.use("/api/email", email_routes_1.default);
 app.use("/api/info", info_routes_1.default);
 app.use("/api/options", options_routes_1.default);

@@ -1,111 +1,11 @@
 [
     {
-        "id": 20250107,
-        "name": "Vanesa",
-        "lastname": "Bucher",
-        "title": "Front-end | Full-stack",
-        "username": "buchervanesa",
-        "email": "buchervanesa@gmail.com",
-        "image": "https://github.com/buchervanesa.png",
-        "about": "Me interesa el desarrollo web, el diseño UI/UX, el fitness y las actividades al aire libre.",
-        "country": "Argentina",
-        "role": "junior",
-        "skills": [
-            { "name": "Front End" },
-            { "name": "NextJS" },
-            { "name": "ReactJS" },
-            { "name": "Tailwind" },
-            { "name": "Bootstrap " }
-        ],
-        "links": [
-            {
-                "name": "Linkedin",
-                "url": "https://www.linkedin.com/in/vanesa-bucher-623295245"
-            },
-            {
-                "name": "Github",
-                "url": "https://github.com/buchervanesa"
-            },
-            {
-                "name": "Portfolio",
-                "url": "https://portafolio-drab-three.vercel.app/"
-            }
-        ]
-    },
-    {
-        "id": 20250106,
-        "name": "José Miguel",
-        "lastname": "González Guzmán",
-        "title": "Front-end | Full-stack",
-        "username": "JosemAVSG",
-        "email": "jmgg.95n@gmail.com",
-        "image": "https://github.com/JosemAVSG.png",
-        "about": "Me apasiona el aprendizaje continuo y exploro constantemente nuevas tecnologías para mantenerme al día en el desarrollo. Destaco en la resolución de problemas y el trabajo en equipo.",
-        "country": "Colombia",
-        "nationality": "Venezolano",
-        "role": "middle",
-        "skills": [
-            { "name": "Front End" },
-            { "name": "NextJS" },
-            { "name": "Angular" },
-            { "name": "Tailwind" },
-            { "name": "ReactJS" },
-            { "name": "NestJs" },
-            { "name": "PHP" }
-        ],
-        "links": [
-            {
-                "name": "Linkedin",
-                "url": "https://www.linkedin.com/in/josemavsg"
-            },
-            {
-                "name": "Github",
-                "url": "https://github.com/JosemAVSG"
-            },
-            {
-                "name": "Portfolio",
-                "url": "https://josegonzalezportfolio.vercel.app"
-            }
-        ]
-    },
-    {
-        "id": 20250105,
-        "name": "Ricardo",
-        "lastname": "Olivari",
-        "title": "Especialista en backend",
-        "username": "ricardoaot",
-        "email": "ricardoaot@gmail.com",
-        "image": "https://github.com/ricardoaot.png",
-        "about": "Con más de 5 años de experiencia como ingeniero de software, destaco en PHP, JavaScript, TypeScript, ReactJS y Node.js. Experto en la gestión de bases de datos (MS SQL Server, Postgres, MongoDB) ",
-        "country": "Peru",
-        "skills": [
-            { "name": "Nest.js" },
-            { "name": "ReactJS" },
-            { "name": "PHP" },
-            { "name": "AWS " },
-            { "name": "Azure" }
-        ],
-        "links": [
-            {
-                "name": "Linkedin",
-                "url": "https://www.linkedin.com/in/ricardoolivarit"
-            },
-            {
-                "name": "Github",
-                "url": "https://github.com/ricardoaot"
-            },
-            {
-                "name": "Portfolio",
-                "url": "https://portfolio.ricardoolivari.com/"
-            }
-        ]
-    },
-    {
-        "id": 20250104,
+        "id": 20250117,
+        "order": 1,
+        "username": "ivanagbarreto",
         "name": "Ivana Geraldine",
         "lastname": "Barreto",
         "title": "UXUI Designer | Front-end",
-        "username": "ivanagbarreto",
         "email": "ivanagbarreto@gmail.com",
         "image": "https://github.com/ivanagbarreto.png",
         "about": "Soy Fullstack especializado en Frontend, mi pasión por la tecnología se centra en crear experiencias visuales e interactivas que conecten con los usuarios",
@@ -137,11 +37,151 @@
         ]
     },
     {
+        "id": 20250617,
+        "order": 1,
+        "username": "franco-seiler",
+        "name": "Franco Seiler",
+        "lastname": "",
+        "title": "Front End Developer.",
+        "email": "seilerfranco317@gmail.com",
+        "image": "https://github.com/Fransei29.png",
+        "about": "Desarrollador fullstack con más de 2 años de experiencia y un fuerte enfoque en frontend, ingeniería de aplicaciones web escalables con tecnologías modernas.",
+        "country": "Argentina",
+        "role": "junior",
+        "skills": [
+            { "name": "Front End" },
+            { "name": "NextJS" },
+            { "name": "ReactJS" },
+            { "name": "ExpressJS " },
+            { "name": "MongoDB " },
+            { "name": "SQL " }
+        ],
+        "links": [
+            {
+                "name": "Linkedin",
+                "url": "https://linkedin.com/in/franco-seiler"
+            },
+            {
+                "name": "Github",
+                "url": "https://github.com/Fransei29"
+            },
+            {
+                "name": "Portfolio",
+                "url": "https://new-portfolio-three-flax.vercel.app"
+            }
+        ]
+    },
+    {
+        "id": 20250107,
+        "order": 3,
+        "username": "buchervanesa",
+        "name": "Vanesa",
+        "lastname": "Bucher",
+        "title": "Front-end | Full-stack",
+        "email": "buchervanesa@gmail.com",
+        "image": "https://github.com/buchervanesa.png",
+        "about": "Me interesa el desarrollo web, el diseño UI/UX, el fitness y las actividades al aire libre.",
+        "country": "Argentina",
+        "role": "junior",
+        "skills": [
+            { "name": "Front End" },
+            { "name": "NextJS" },
+            { "name": "ReactJS" },
+            { "name": "Tailwind" },
+            { "name": "Bootstrap " }
+        ],
+        "links": [
+            {
+                "name": "Linkedin",
+                "url": "https://linkedin.com/in/vanesa-bucher-623295245"
+            },
+            {
+                "name": "Github",
+                "url": "https://github.com/buchervanesa"
+            },
+            {
+                "name": "Portfolio",
+                "url": "https://portafolio-drab-three.vercel.app/"
+            }
+        ]
+    },
+    {
+        "id": 20250106,
+        "order": 3,
+        "username": "JosemAVSG",
+        "name": "José Miguel",
+        "lastname": "González Guzmán",
+        "title": "Front-end | Full-stack",
+        "email": "jmgg.95n@gmail.com",
+        "image": "https://github.com/JosemAVSG.png",
+        "about": "Me apasiona el aprendizaje continuo y exploro constantemente nuevas tecnologías para mantenerme al día en el desarrollo. Destaco en la resolución de problemas y el trabajo en equipo.",
+        "country": "Colombia",
+        "nationality": "Venezolano",
+        "role": "middle",
+        "skills": [
+            { "name": "Front End" },
+            { "name": "NextJS" },
+            { "name": "Angular" },
+            { "name": "Tailwind" },
+            { "name": "ReactJS" },
+            { "name": "NestJs" },
+            { "name": "PHP" }
+        ],
+        "links": [
+            {
+                "name": "Linkedin",
+                "url": "https://linkedin.com/in/josemavsg"
+            },
+            {
+                "name": "Github",
+                "url": "https://github.com/JosemAVSG"
+            },
+            {
+                "name": "Portfolio",
+                "url": "https://josegonzalezportfolio.vercel.app"
+            }
+        ]
+    },
+    {
+        "id": 20250105,
+        "order": 3,
+        "username": "ricardoaot",
+        "name": "Ricardo",
+        "lastname": "Olivari",
+        "title": "Especialista en backend",
+        "email": "ricardoaot@gmail.com",
+        "image": "https://github.com/ricardoaot.png",
+        "about": "Con más de 5 años de experiencia como ingeniero de software, destaco en PHP, JavaScript, TypeScript, ReactJS y Node.js. Experto en la gestión de bases de datos (MS SQL Server, Postgres, MongoDB) ",
+        "country": "Peru",
+        "skills": [
+            { "name": "Nest.js" },
+            { "name": "ReactJS" },
+            { "name": "PHP" },
+            { "name": "AWS " },
+            { "name": "Azure" }
+        ],
+        "links": [
+            {
+                "name": "Linkedin",
+                "url": "https://linkedin.com/in/ricardoolivarit"
+            },
+            {
+                "name": "Github",
+                "url": "https://github.com/ricardoaot"
+            },
+            {
+                "name": "Portfolio",
+                "url": "https://portfolio.ricardoolivari.com/"
+            }
+        ]
+    },
+    {
         "id": 20250103,
+        "order": 2,
+        "username": "sandrabibiana",
         "name": "Bibiana",
         "lastname": "Hurtado Perdomo",
         "title": "Administradora",
-        "username": "sandrabibiana",
         "email": "bhurtadoperdomo@gmail.com",
         "image": "https://github.com/sandrabibiana.png",
         "about": "Administradora de Empresas | Especialista en Gerencia Educativa | Maestrante en Educación Apasionada por la innovación educativa y la transformación digital.",
@@ -155,7 +195,7 @@
         "links": [
             {
                 "name": "Linkedin",
-                "url": "https://www.linkedin.com/in/bibiana-hurtado-perdomo-103085331"
+                "url": "https://linkedin.com/in/bibiana-hurtado-perdomo-103085331"
             },
             {
                 "name": "Github",
@@ -165,10 +205,11 @@
     },
     {
         "id": 20250102,
+        "order": 3,
+        "username": "fhdzleon",
         "name": "Felipe Hernández",
         "lastname": "Díaz de León",
         "title": "Full Stack",
-        "username": "fhdzleon",
         "email": "fhdzleon@gmail.com",
         "image": "https://github.com/fhdzleon.png",
         "about": "Soy Fullstack especializado en Frontend, mi pasión por la tecnología se centra en crear experiencias visuales e interactivas que conecten con los usuarios",
@@ -201,10 +242,11 @@
     },
     {
         "id": 20250101,
-        "name": "Frank",
-        "lastname": "GP",
-        "title": "Full Stack",
+        "order": 0,
         "username": "frankgp",
+        "name": "Frank GP",
+        "lastname": "",
+        "title": "Full Stack",
         "email": "fgp555@gmail.com",
         "image": "https://github.com/fgp555.png",
         "about": "Con experiencia en el desarrollo de aplicaciones web dinámicas y escalables, especialista en backend y DevOps.",
@@ -221,7 +263,7 @@
         "links": [
             {
                 "name": "Linkedin",
-                "url": "https://www.linkedin.com/in/fgp555/"
+                "url": "https://linkedin.com/in/fgp555/"
             },
             {
                 "name": "Github",
@@ -240,9 +282,10 @@
     {
         "id": 20250108,
         "name": "Giovanna",
+        "username": "giomr",
+        "order": 3,
         "lastname": "Martinez Russo",
         "title": "Full Stack",
-        "username": "giomr",
         "email": "giovannamartinezrusso@gmail.com",
         "image": "https://github.com/GMRGIOVANNAMARTINEZRUSSO.png",
         "about": "Developer apasionada con experiencia en el desarrollo de interfaces intuitivas y atractivas.",
@@ -251,7 +294,7 @@
         "links": [
             {
                 "name": "Linkedin",
-                "url": "https://www.linkedin.com/in/giovanna-martinez-russo/"
+                "url": "https://linkedin.com/in/giovanna-martinez-russo/"
             },
             {
                 "name": "Github",

@@ -7,8 +7,11 @@ const stat_entity_1 = require("./entities/stat.entity");
 class StatService {
     constructor() {
         this.repo = data_source_1.AppDataSource.getRepository(stat_entity_1.StatEntity);
+        this.truncate = (str, max) => (str && str.length > max ? str.substring(0, max) : str);
     }
     async track(data) {
+        data.currentURL = this.truncate(data.currentURL, 200);
+        data.referrerURL = this.truncate(data.referrerURL, 200);
         const stat = this.repo.create(data);
         return await this.repo.save(stat);
     }

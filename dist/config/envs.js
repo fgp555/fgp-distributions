@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ENV = exports.DB_PASSWORD = exports.DB_USERNAME = exports.DB_NAME = exports.DB_PORT = exports.DB_HOST = exports.PORT = void 0;
+exports.ENV = exports.MONGO_URI = exports.GOOGLE_CALLBACK_URL = exports.GOOGLE_CLIENT_SECRET = exports.GOOGLE_CLIENT_ID = exports.CLIENT_URL = exports.DB_PASSWORD = exports.DB_USERNAME = exports.DB_NAME = exports.DB_PORT = exports.DB_HOST = exports.PORT = void 0;
 // src/config/envs.ts
 const dotenv_1 = require("dotenv");
 // import "dotenv/config";
@@ -11,6 +11,11 @@ exports.DB_PORT = process.env.DB_PORT || 3306;
 exports.DB_NAME = process.env.DB_NAME || "my_db";
 exports.DB_USERNAME = process.env.DB_USERNAME || "root";
 exports.DB_PASSWORD = process.env.DB_PASSWORD || "";
+exports.CLIENT_URL = process.env.CLIENT_URL;
+exports.GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+exports.GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
+exports.GOOGLE_CALLBACK_URL = exports.CLIENT_URL + "/api/auth/google/callback";
+exports.MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/miapp";
 exports.ENV = {
     DB_HOST: process.env.DB_HOST || "localhost",
     DB_PORT: parseInt(process.env.DB_PORT || "3306", 10),

@@ -20,11 +20,11 @@ __decorate([
     __metadata("design:type", Number)
 ], StatEntity.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: true }),
+    (0, typeorm_1.Column)({ type: "varchar", length: 200, nullable: true }),
     __metadata("design:type", String)
 ], StatEntity.prototype, "currentURL", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: true }),
+    (0, typeorm_1.Column)({ type: "varchar", length: 200, nullable: true }),
     __metadata("design:type", String)
 ], StatEntity.prototype, "referrerURL", void 0);
 __decorate([

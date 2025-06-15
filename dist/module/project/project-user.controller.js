@@ -7,6 +7,7 @@ const service = new project_user_service_1.ProjectUserService();
 class ProjectUserController {
     async findAll(req, res, next) {
         try {
+            // 
             const result = await service.findAll();
             res.json(result);
         }

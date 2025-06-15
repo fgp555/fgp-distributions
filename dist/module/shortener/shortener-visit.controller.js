@@ -8,7 +8,7 @@ const service = new shortener_visit_service_1.ShortenerVisitService();
 class ShortenerVisitController {
     async findByShortenerId(req, res, next) {
         try {
-            const id = Number(req.params.id);
+            const id = req.params.id;
             const visits = await service.findByShortenerId(id);
             res.json(visits);
         }

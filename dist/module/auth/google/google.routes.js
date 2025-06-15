@@ -3,11 +3,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const envs_1 = require("../../../config/envs");
 const express_1 = require("express");
-const passport_1 = __importDefault(require("passport"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const data_source_1 = require("../../../config/data-source");
-const user_entity_1 = require("../../auth/user/dtos-entities/user.entity");
+const passport_1 = __importDefault(require("passport"));
+const user_model_1 = __importDefault(require("../user/models/user.model")); // Asegúrate de que esta ruta sea correcta
 const router = (0, express_1.Router)();
 const JWT_SECRET = process.env.JWT_SECRET || "mi_super_secreto";
 const JWT_EXPIRES_IN = "1d";
@@ -16,11 +16,10 @@ router.get("/google/callback", passport_1.default.authenticate("google", { sessi
     try {
         const profileGoogle = req.user;
         const email = profileGoogle.emails?.[0]?.value || "";
-        const userRepo = data_source_1.AppDataSource.getRepository(user_entity_1.UserEntity);
-        let user = await userRepo.findOneBy({ email });
+        let user = await user_model_1.default.findOne({ email });
         if (!user) {
-            // 🆕 Crear nuevo usuario si no existe
-            user = userRepo.create({
+            // Crear nuevo usuario
+            user = new user_model_1.default({
                 googleId: profileGoogle.id,
                 name: profileGoogle.name.givenName,
                 lastName: profileGoogle.name.familyName,
@@ -29,37 +28,35 @@ router.get("/google/callback", passport_1.default.authenticate("google", { sessi
                 photo: profileGoogle.photos?.[0]?.value,
                 rawGoogle: profileGoogle._raw,
             });
-            user = await userRepo.save(user);
         }
         else {
-            // 🔁 Actualizar datos del usuario existente si hay cambios
+            // Actualizar datos existentes
             user.googleId = profileGoogle.id;
             user.name = profileGoogle.name.givenName;
             user.lastName = profileGoogle.name.familyName;
             user.displayName = profileGoogle.displayName;
             user.photo = profileGoogle.photos?.[0]?.value;
             user.rawGoogle = profileGoogle._raw;
-            user = await userRepo.save(user);
         }
-        const jwtExpiresIn = parseInt(JWT_EXPIRES_IN, 10); // parse as an integer
-        // 🎯 Generar token
+        await user.save();
+        const jwtExpiresInSeconds = 60 * 60 * 24; // 1 día
         const payload = {
             user: {
-                id: user.id,
+                id: user._id,
                 email: user.email,
                 name: user.name,
                 role: user.role,
                 isVisible: user.isVisible,
                 photo: user.photo,
             },
-            accessToken: jsonwebtoken_1.default.sign({ sub: user.id }, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN }),
-            refreshToken: jsonwebtoken_1.default.sign({ sub: user.id }, JWT_SECRET, { expiresIn: "7d" }),
+            accessToken: jsonwebtoken_1.default.sign({ sub: user._id }, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN }),
+            refreshToken: jsonwebtoken_1.default.sign({ sub: user._id }, JWT_SECRET, { expiresIn: "7d" }),
             loginDate: new Date().toLocaleString(),
-            expirationDate: new Date(new Date().getTime() + jwtExpiresIn * 1000).toLocaleString(),
-            sub: user.id,
+            expirationDate: new Date(Date.now() + jwtExpiresInSeconds * 1000).toLocaleString(),
+            sub: user._id,
         };
         const jwtToken = jsonwebtoken_1.default.sign(payload, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
-        res.redirect(`${process.env.CLIENT_URL}/auth/success?token=${jwtToken}`);
+        res.redirect(`${envs_1.CLIENT_URL}/auth/success?token=${jwtToken}`);
     }
     catch (error) {
         console.error("OAuth Callback Error:", error);

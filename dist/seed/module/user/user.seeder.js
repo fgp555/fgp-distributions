@@ -4,35 +4,34 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.seedUser = void 0;
+// src/seed/user/user.seed.ts
 const bcrypt_1 = __importDefault(require("bcrypt"));
-const data_source_1 = require("../../../config/data-source");
-const user_entity_1 = require("../../../module/auth/user/dtos-entities/user.entity");
+const user_entity_1 = require("../../../module/auth/user/dtos-entities/user.entity"); // solo para el enum
+const user_model_1 = __importDefault(require("../../../module/auth/user/models/user.model")); // tu modelo Mongoose
 const seedUser = async () => {
     try {
-        const userRepository = data_source_1.AppDataSource.getRepository(user_entity_1.UserEntity);
-        const hashedPass = (password) => bcrypt_1.default.hash(password, 10);
+        const hashedPass = async (password) => await bcrypt_1.default.hash(password, 10);
         const users = [
             {
-                id: "54695949-687c-45f5-b7df-4a08d810f0ee",
+                // _id: "54695949-687c-45f5-b7df-4a08d810f0ee", // si usas UUID como ID
                 name: "SUPERADMIN",
                 email: process.env.ADMIN_MAIL,
-                password: await hashedPass(process.env.ADMIN_PASS),
+                password: await hashedPass(process.env.ADMIN_PASS || "admin123"),
                 role: user_entity_1.UserRole.SUPERADMIN,
                 photo: "https://i.postimg.cc/GmddyvS1/icon-user.webp",
                 sendMail: false,
                 isVisible: true,
             },
-            {
-                name: "Usuario Tester",
-                email: "tester@fgp.one",
-                password: await hashedPass("tester@fgp.one"),
-            },
+            // {
+            //   name: "Usuario Tester",
+            //   email: "tester@fgp.one",
+            //   password: await hashedPass("tester@fgp.one"),
+            // },
         ];
         for (const user of users) {
-            const exists = await userRepository.findOneBy({ email: user.email });
+            const exists = await user_model_1.default.findOne({ email: user.email });
             if (!exists) {
-                const newUser = userRepository.create(user);
-                await userRepository.save(newUser);
+                await user_model_1.default.create(user);
                 console.log(`✅ Seeded: ${user.email}`);
             }
             else {

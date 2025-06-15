@@ -70,7 +70,7 @@ class ShortenerController {
     }
     async findOne(req, res, next) {
         try {
-            const id = Number(req.params.id);
+            const id = req.params.id;
             const result = await service.findOne(id);
             if (!result)
                 throw new error_middleware_1.AppError("Short URL not found", 404);
@@ -82,7 +82,7 @@ class ShortenerController {
     }
     async remove(req, res, next) {
         try {
-            const id = Number(req.params.id);
+            const id = req.params.id;
             const deleted = await service.remove(id);
             if (!deleted)
                 throw new error_middleware_1.AppError("Short URL not found", 404);
@@ -94,7 +94,7 @@ class ShortenerController {
     }
     async update(req, res, next) {
         try {
-            const id = Number(req.params.id);
+            const id = req.params.id;
             const { destination, backHalf } = req.body;
             const result = await service.update(id, { destination, backHalf });
             if (!result)

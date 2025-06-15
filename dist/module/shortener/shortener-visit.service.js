@@ -1,24 +1,17 @@
 "use strict";
-// src/module/shortener/shortener-visit.service.ts
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ShortenerVisitService = void 0;
-const data_source_1 = require("../../config/data-source");
-const shortener_visit_entity_1 = require("./entities/shortener-visit.entity");
+// src/module/shortener/shortener-visit.service.ts
+const shortener_visit_model_1 = __importDefault(require("./models/shortener-visit.model"));
 class ShortenerVisitService {
-    constructor() {
-        this.visitRepo = data_source_1.AppDataSource.getRepository(shortener_visit_entity_1.ShortenerVisitEntity);
-    }
     async findAll() {
-        return this.visitRepo.find({
-            order: { visitedAt: "DESC" },
-            relations: ["shortener"],
-        });
+        return await shortener_visit_model_1.default.find().sort({ visitedAt: -1 }).populate("shortenerId");
     }
     async findByShortenerId(shortenerId) {
-        return this.visitRepo.find({
-            where: { shortenerId },
-            order: { visitedAt: "DESC" },
-        });
+        return await shortener_visit_model_1.default.find({ shortenerId }).sort({ visitedAt: -1 });
     }
 }
 exports.ShortenerVisitService = ShortenerVisitService;

@@ -8,7 +8,11 @@ class ProjectUserService {
         this.repoProjectUser = data_source_1.AppDataSource.getRepository(user_entity_1.ProjectUserEntity);
     }
     async findAll() {
-        const results = await this.repoProjectUser.find();
+        const results = await this.repoProjectUser.find({
+            order: {
+                order: "ASC", // o 'DESC' si quieres descendente
+            },
+        });
         return {
             page: 1,
             totalPages: 1,

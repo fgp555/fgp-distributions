@@ -4,18 +4,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.seedShortener = void 0;
+// src/seed/shortener/shortener.seed.ts
 const shortener_data_json_1 = __importDefault(require("./shortener.data.json"));
-const data_source_1 = require("../../../config/data-source");
-const shortener_entity_1 = require("../../../module/shortener/entities/shortener.entity");
+const shortener_model_1 = __importDefault(require("../../../module/shortener/models/shortener.model")); // modelo mongoose
 const seedShortener = async () => {
-    const repo = data_source_1.AppDataSource.getRepository(shortener_entity_1.ShortenerEntity);
-    const count = await repo.count();
+    const count = await shortener_model_1.default.countDocuments();
     if (count === 0) {
-        await repo.save(shortener_data_json_1.default);
+        await shortener_model_1.default.insertMany(shortener_data_json_1.default);
         console.log("🌱 shortenerSeeder seed complete ✅");
     }
     else {
-        console.log("ℹ️ shortenerSeeder table already has data. Seed skipped.");
+        console.log("ℹ️ shortenerSeeder already has data. Seed skipped.");
     }
 };
 exports.seedShortener = seedShortener;
