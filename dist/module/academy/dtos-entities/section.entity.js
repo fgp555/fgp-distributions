@@ -53,6 +53,6 @@ __decorate([
     __metadata("design:type", Date)
 ], SectionEntity.prototype, "updatedAt", void 0);
 exports.SectionEntity = SectionEntity = __decorate([
-    (0, typeorm_1.Entity)("sections")
+    (0, typeorm_1.Entity)("academy_sections")
 ], SectionEntity);
 //# sourceMappingURL=section.entity.js.map

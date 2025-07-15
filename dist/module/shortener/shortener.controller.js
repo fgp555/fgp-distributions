@@ -14,9 +14,9 @@ class ShortenerController {
             next(err);
         }
     }
-    async findAllSelect(req, res, next) {
+    async findAllSelectBackup(req, res, next) {
         try {
-            const urls = await service.findAllSelect();
+            const urls = await service.findAllSelectBackup();
             res.json(urls);
         }
         catch (err) {

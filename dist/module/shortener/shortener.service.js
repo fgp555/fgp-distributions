@@ -13,8 +13,8 @@ class ShortenerService {
     async findAll() {
         return await shortener_model_1.default.find();
     }
-    async findAllSelect() {
-        return await shortener_model_1.default.find().select("backHalf destination");
+    async findAllSelectBackup() {
+        return await shortener_model_1.default.find().select("backHalf destination -_id").sort({ destination: 1 });
     }
     async findAllFilter(params = {}) {
         const { page, limit, search, dateVisitFrom, dateVisitTo, sortVisitCount } = params;
@@ -77,19 +77,22 @@ class ShortenerService {
         return await shortener_model_1.default.findById(id);
     }
     async update(id, data) {
-        console.log("id:", id);
-        console.log("data:", data);
         const record = await shortener_model_1.default.findById(id);
         if (!record)
             return null;
+        // Validar si el backHalf está en uso por otro documento
         if (data.backHalf && data.backHalf !== record.backHalf) {
-            const exists = await shortener_model_1.default.findOne({ backHalf: data.backHalf });
+            const exists = await shortener_model_1.default.findOne({
+                backHalf: data.backHalf,
+                _id: { $ne: new mongoose_1.Types.ObjectId(id) }, // ✅ excluir el actual
+            });
             if (exists)
                 throw new Error("Custom code already in use");
             record.backHalf = data.backHalf;
         }
-        if (data.destination)
+        if (data.destination) {
             record.destination = data.destination;
+        }
         return await record.save();
     }
     async remove(id) {

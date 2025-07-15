@@ -9,10 +9,10 @@ const db_backup_service_1 = require("./db-backup.service");
 const dbBackupService = new db_backup_service_1.DBBackupService();
 // Ejecutar todos los días a medianoche (12:00 AM)
 node_cron_1.default.schedule("0 0 * * *", async () => {
-    console.log("⏰ Ejecutando backup programado a las 12:00 AM hora Perú...");
+    console.info("⏰ Ejecutando backup programado a las 12:00 AM hora Perú...");
     try {
         const result = await dbBackupService.backupNodeJS();
-        console.log("✅ Backup realizado:", result);
+        console.info("✅ Backup realizado:", result);
     }
     catch (err) {
         console.error("❌ Error en el backup programado:", err);
@@ -22,10 +22,10 @@ node_cron_1.default.schedule("0 0 * * *", async () => {
 });
 // // Ejecutar cada minuto (para pruebas)
 // cron.schedule("* * * * *", async () => {
-//   console.log("🧪 Ejecutando backup de prueba cada minuto...");
+//   console.info("🧪 Ejecutando backup de prueba cada minuto...");
 //   try {
 //     const result = await dbBackupService.backup();
-//     console.log("✅ Backup de prueba realizado:", result);
+//     console.info("✅ Backup de prueba realizado:", result);
 //   } catch (err) {
 //     console.error("❌ Error en el backup de prueba:", err);
 //   }

@@ -29,13 +29,13 @@ const seedOptions = async () => {
             const existing = await repo.findOneBy({ key: opt.key });
             if (!existing) {
                 await repo.save(repo.create(opt));
-                console.log(`✔️ Inserted: ${opt.key}`);
+                console.info(`✔️ Inserted: ${opt.key}`);
             }
             else {
-                console.log(`⚠️ Already exists: ${opt.key}`);
+                console.info(`⚠️ Already exists: ${opt.key}`);
             }
         }
-        console.log("✅ Seed complete");
+        console.info("✅ Seed complete");
     }
     catch (error) {
         console.error("❌ Seed failed", error);

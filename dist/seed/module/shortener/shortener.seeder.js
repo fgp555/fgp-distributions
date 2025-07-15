@@ -11,10 +11,10 @@ const seedShortener = async () => {
     const count = await shortener_model_1.default.countDocuments();
     if (count === 0) {
         await shortener_model_1.default.insertMany(shortener_data_json_1.default);
-        console.log("🌱 shortenerSeeder seed complete ✅");
+        console.info("🌱 shortenerSeeder seed complete ✅");
     }
     else {
-        console.log("ℹ️ shortenerSeeder already has data. Seed skipped.");
+        console.info("ℹ️ shortenerSeeder already has data. Seed skipped.");
     }
 };
 exports.seedShortener = seedShortener;

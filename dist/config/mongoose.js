@@ -6,11 +6,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.connectMongo = void 0;
 // src/config/mongoose.ts
 const mongoose_1 = __importDefault(require("mongoose"));
-const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/miapp";
+const envs_1 = require("./envs");
 const connectMongo = async () => {
     try {
-        await mongoose_1.default.connect(MONGO_URI);
-        console.log("🍃 MongoDB conectado");
+        await mongoose_1.default.connect(envs_1.ENV_MONGO.URI);
+        console.info("🍃 MongoDB conectado");
     }
     catch (error) {
         console.error("❌ Error conectando a MongoDB:", error);

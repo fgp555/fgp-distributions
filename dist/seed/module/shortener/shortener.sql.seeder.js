@@ -12,10 +12,10 @@ const seedShortener = async () => {
     const count = await repo.count();
     if (count === 0) {
         await repo.save(shortener_data_json_1.default);
-        console.log("🌱 shortenerSeeder seed complete ✅");
+        console.info("🌱 shortenerSeeder seed complete ✅");
     }
     else {
-        console.log("ℹ️ shortenerSeeder table already has data. Seed skipped.");
+        console.info("ℹ️ shortenerSeeder table already has data. Seed skipped.");
     }
 };
 exports.seedShortener = seedShortener;

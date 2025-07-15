@@ -12,10 +12,10 @@ const seedProduct = async () => {
     const count = await repo.count();
     if (count === 0) {
         await repo.save(product_data_json_1.default);
-        console.log("🌱 productSeeder seed complete ✅");
+        console.info("🌱 productSeeder seed complete ✅");
     }
     else {
-        console.log("ℹ️ productSeeder table already has data. Seed skipped.");
+        console.info("ℹ️ productSeeder table already has data. Seed skipped.");
     }
 };
 exports.seedProduct = seedProduct;

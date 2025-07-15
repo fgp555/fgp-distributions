@@ -32,6 +32,22 @@
         ]
     },
     {
+        "slug": "mobile",
+        "name": "Mobile",
+        "description": "Aprende Mobile desde cero con ejemplos prácticos.",
+        "thumbnail": "https://i.postimg.cc/SshWTby9/mobile.webp",
+        "courses": [
+            {
+                "id": 25310000,
+                "slug": "flutter",
+                "title": "Flutter",
+                "description": "Aprende Flutter desde cero con ejemplos prácticos.",
+                "thumbnail": "https://i.postimg.cc/sx2GqVbM/flutter.webp",
+                "createdAt": "2025-07-15:00:00.000Z"
+            }
+        ]
+    },
+    {
         "slug": "api",
         "name": "API",
         "description": "Aprende APIs desde cero con ejemplos prácticos.",

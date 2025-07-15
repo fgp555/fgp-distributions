@@ -52,6 +52,6 @@ __decorate([
     __metadata("design:type", Date)
 ], CategoryEntity.prototype, "updatedAt", void 0);
 exports.CategoryEntity = CategoryEntity = __decorate([
-    (0, typeorm_1.Entity)("categories")
+    (0, typeorm_1.Entity)("academy_categories")
 ], CategoryEntity);
 //# sourceMappingURL=category.entity.js.map

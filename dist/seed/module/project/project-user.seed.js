@@ -16,10 +16,10 @@ const seedProjectUser = async () => {
     const count = await repo.count();
     if (count === 0) {
         await repo.save(mappedData);
-        console.log("🌱 ProjectUser seed complete ✅");
+        console.info("🌱 ProjectUser seed complete ✅");
     }
     else {
-        console.log("ℹ️ ProjectUser table already has data. Seed skipped.");
+        console.info("ℹ️ ProjectUser table already has data. Seed skipped.");
     }
 };
 exports.seedProjectUser = seedProjectUser;

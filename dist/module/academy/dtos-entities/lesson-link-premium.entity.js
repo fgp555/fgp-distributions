@@ -32,6 +32,6 @@ __decorate([
     __metadata("design:type", lesson_entity_1.LessonEntity)
 ], LessonLinkPremiumEntity.prototype, "lesson", void 0);
 exports.LessonLinkPremiumEntity = LessonLinkPremiumEntity = __decorate([
-    (0, typeorm_1.Entity)("lesson_link_premium")
+    (0, typeorm_1.Entity)("academy_lesson_link_premium")
 ], LessonLinkPremiumEntity);
 //# sourceMappingURL=lesson-link-premium.entity.js.map

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DBConfigController = void 0;
-const runSeeders_1 = require("../../seed/runSeeders");
+const seed_service_1 = require("../../seed/seed.service");
 const db_config_service_1 = require("./db-config.service");
 class DBConfigController {
     constructor() {
@@ -12,7 +12,7 @@ class DBConfigController {
         res.json(result);
     }
     async runSeeders(req, res) {
-        const result = await (0, runSeeders_1.runSeeders)();
+        const result = await (0, seed_service_1.runSeeders)();
         res.json(result);
     }
     async dropAndSeed(req, res) {

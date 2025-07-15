@@ -43,7 +43,7 @@ const ShortenerSeedSQL = async () => {
         const query = fs.readFileSync(sqlPath, "utf-8");
         // await AppDataSource.initialize();
         await data_source_1.AppDataSource.query(query);
-        console.log("✅ Shortener SQL seed complete");
+        console.info("✅ Shortener SQL seed complete");
         // await AppDataSource.destroy();
     }
     catch (error) {

@@ -53,6 +53,6 @@ __decorate([
     __metadata("design:type", Date)
 ], CourseEntity.prototype, "updatedAt", void 0);
 exports.CourseEntity = CourseEntity = __decorate([
-    (0, typeorm_1.Entity)("courses")
+    (0, typeorm_1.Entity)("academy_courses")
 ], CourseEntity);
 //# sourceMappingURL=course.entity.js.map

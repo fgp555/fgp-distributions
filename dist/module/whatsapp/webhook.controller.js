@@ -4,13 +4,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.WebhookController = void 0;
 const whatsapp_service_1 = require("./whatsapp.service");
 const verifySignature_1 = require("../../utils/verifySignature");
+const envs_1 = require("../../config/envs");
+// import { WHATSAPP_VERIFY_TOKEN } from "../../config/envs";
 class WebhookController {
     constructor() {
         this.service = new whatsapp_service_1.WhatsappService();
     }
     // Verifica el webhook de WhatsApp
     async verify(req, res) {
-        const VERIFY_TOKEN = process.env.WHATSAPP_VERIFY_TOKEN;
+        const VERIFY_TOKEN = envs_1.ENV_WHATSAPP.VERIFY_TOKEN;
         const mode = req.query["hub.mode"];
         const token = req.query["hub.verify_token"];
         const challenge = req.query["hub.challenge"];
@@ -24,14 +26,14 @@ class WebhookController {
         const signature = req.headers["x-hub-signature-256"];
         const rawBody = req.rawBody;
         const appSecret = process.env.WHATSAPP_APP_SECRET || "";
-        // console.log({ signature, rawBody, appSecret });
+        // console.info({ signature, rawBody, appSecret });
         const isDev = process.env.DEV_MODE === "true";
         if (!isDev && !(0, verifySignature_1.verifySignature)(appSecret, rawBody, signature)) {
             console.warn("❌ Firma inválida. Posible intento de spoof.");
             return res.sendStatus(403);
         }
         const body = req.body;
-        console.log("Incoming_webhook_payload =", JSON.stringify(body, null, 2));
+        console.info("Incoming_webhook_payload =", JSON.stringify(body, null, 2));
         if (body.object === "whatsapp_business_account") {
             for (const entry of body.entry) {
                 const entryId = entry.id;

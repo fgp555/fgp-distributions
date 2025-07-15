@@ -14,22 +14,23 @@ const io = new socket_io_1.Server(httpServer, {
     cors: { origin: "*" },
 });
 io.on("connection", (socket) => {
-    console.log("🟢 Nuevo cliente conectado:", socket.id);
+    console.info("🟢 Nuevo cliente conectado:", socket.id);
     const emitConnectedUsers = () => {
         const connectedUsers = Array.from(io.sockets.sockets.keys());
-        console.log("👥 Usuarios conectados:", connectedUsers.length);
+        // console.info("👥 🔌 Usuarios conectados:", connectedUsers.length, new Date().toLocaleString("us-CO"));
+        console.info("👥 Usuarios conectados:", connectedUsers.length, new Date());
         io.emit("connectedUsers", connectedUsers);
     };
     // 👋 Emitir al conectar
     emitConnectedUsers();
     // 🔄 Emitir manualmente cuando un cliente lo solicita
     socket.on("getConnectedUsers", () => {
-        console.log("📥 Solicitud de usuarios conectados desde:", socket.id);
+        console.info("📥 Solicitud de usuarios conectados desde:", socket.id);
         emitConnectedUsers();
     });
     // 🔌 Emitir cuando un cliente se desconecta
     socket.on("disconnect", () => {
-        console.log("🔴 Cliente desconectado:", socket.id);
+        console.info("🔴 Cliente desconectado:", socket.id);
         emitConnectedUsers();
     });
 });

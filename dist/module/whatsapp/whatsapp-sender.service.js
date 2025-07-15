@@ -5,12 +5,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SenderService = void 0;
 const dotenv_1 = __importDefault(require("dotenv"));
+const envs_1 = require("../../config/envs");
 dotenv_1.default.config();
 class SenderService {
     constructor() {
-        this.baseUrl = process.env.WHATSAPP_API_BASE_URL;
-        this.phoneNumberId = process.env.WHATSAPP_PHONE_NUMBER_ID;
-        this.token = process.env.WHATSAPP_TOKEN;
+        this.baseUrl = envs_1.ENV_WHATSAPP.API_BASE_URL;
+        this.phoneNumberId = envs_1.ENV_WHATSAPP.PHONE_NUMBER_ID;
+        this.token = envs_1.ENV_WHATSAPP.TOKEN;
     }
     async sendTextMessage(to, body) {
         if (!this.baseUrl || !this.phoneNumberId || !this.token) {

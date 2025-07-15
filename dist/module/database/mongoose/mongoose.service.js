@@ -10,11 +10,12 @@ const path_1 = __importDefault(require("path"));
 const child_process_1 = require("child_process");
 const util_1 = require("util");
 const mongoose_1 = __importDefault(require("mongoose"));
+const envs_1 = require("../../../config/envs");
 const execAsync = (0, util_1.promisify)(child_process_1.exec);
 class MongooseService {
     constructor() {
         this.backupsDir = path_1.default.resolve(__dirname, "../../../backups/db");
-        this.mongoUri = process.env.MONGO_URI || "mongodb://localhost:27017/mydb";
+        this.mongoUri = envs_1.ENV_MONGO.URI;
         if (!fs_1.default.existsSync(this.backupsDir)) {
             fs_1.default.mkdirSync(this.backupsDir, { recursive: true });
         }
@@ -27,7 +28,7 @@ class MongooseService {
             const { stdout, stderr } = await execAsync(dumpCommand);
             if (stderr)
                 console.error("⚠️ mongodump stderr:", stderr);
-            console.log("✅ mongodump stdout:", stdout);
+            console.info("✅ mongodump stdout:", stdout);
             return backupFolder;
         }
         catch (error) {
@@ -42,7 +43,7 @@ class MongooseService {
         for (const name of collections) {
             try {
                 await db.dropCollection(name);
-                console.log(`🗑️ Dropped: ${name}`);
+                console.info(`🗑️ Dropped: ${name}`);
                 dropped.push(name);
             }
             catch (err) {

@@ -51,8 +51,8 @@ const countBoot = async () => {
         await repo.save(dateOpt);
     if (timeOpt)
         await repo.save(timeOpt);
-    console.log(`🔁 Boot count for ${today}: ${counterOpt.value}`);
-    console.log(`🕒 Last boot time: ${currentTime}`);
+    console.info(`🔁 Boot count for ${today}: ${counterOpt.value}`);
+    console.info(`🕒 Last boot time: ${currentTime}`);
 };
 exports.countBoot = countBoot;
 //# sourceMappingURL=countBoot.js.map

@@ -12,10 +12,10 @@ const seedAcademyCategory = async () => {
     const count = await repo.count();
     if (count === 0) {
         await repo.save(categories_data_json_1.default);
-        console.log("🌱 CategorySeeder seed complete ✅");
+        console.info("🌱 CategorySeeder seed complete ✅");
     }
     else {
-        console.log("ℹ️ CategorySeeder table already has data. Seed skipped.");
+        console.info("ℹ️ CategorySeeder table already has data. Seed skipped.");
     }
 };
 exports.seedAcademyCategory = seedAcademyCategory;

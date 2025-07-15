@@ -12,10 +12,10 @@ const seedProject = async () => {
     const count = await repo.count();
     if (count === 0) {
         await repo.save(project_data_json_1.default);
-        console.log("🌱 projectSeeder seed complete ✅");
+        console.info("🌱 projectSeeder seed complete ✅");
     }
     else {
-        console.log("ℹ️ projectSeeder table already has data. Seed skipped.");
+        console.info("ℹ️ projectSeeder table already has data. Seed skipped.");
     }
 };
 exports.seedProject = seedProject;

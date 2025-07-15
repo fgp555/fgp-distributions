@@ -2,22 +2,22 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DBConfigService = void 0;
 const data_source_1 = require("../../config/data-source");
-const runSeeders_1 = require("../../seed/runSeeders");
+const seed_service_1 = require("../../seed/seed.service");
 class DBConfigService {
     async dropAndSync() {
         const connection = data_source_1.AppDataSource;
         if (!connection.isInitialized) {
             await connection.initialize();
         }
-        console.log("🧨 Dropping schema...");
+        console.info("🧨 Dropping schema...");
         await connection.dropDatabase();
-        console.log("🔁 Synchronizing schema...");
+        console.info("🔁 Synchronizing schema...");
         await connection.synchronize();
         return { message: "Schema dropped and synchronized successfully" };
     }
     async dropAndSeed() {
         await this.dropAndSync();
-        await (0, runSeeders_1.runSeeders)();
+        await (0, seed_service_1.runSeeders)();
     }
     async runSQLQuery(query) {
         const connection = data_source_1.AppDataSource;

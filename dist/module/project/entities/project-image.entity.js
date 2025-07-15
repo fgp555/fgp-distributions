@@ -32,6 +32,6 @@ __decorate([
     __metadata("design:type", project_entity_1.ProjectEntity)
 ], ProjectImageEntity.prototype, "project", void 0);
 exports.ProjectImageEntity = ProjectImageEntity = __decorate([
-    (0, typeorm_1.Entity)('project_image')
+    (0, typeorm_1.Entity)("project_image")
 ], ProjectImageEntity);
 //# sourceMappingURL=project-image.entity.js.map

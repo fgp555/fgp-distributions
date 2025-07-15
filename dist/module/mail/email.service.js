@@ -8,7 +8,6 @@ const nodemailer_1 = __importDefault(require("nodemailer"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const { MAIL_HOST, MAIL_PORT, MAIL_USER_FROM, MAIL_PASS_FROM, MAIL_USER_TO_CC } = process.env;
-// console.log({ MAIL_HOST, MAIL_PORT, MAIL_USER_FROM, MAIL_PASS_FROM, MAIL_USER_TO_CC });
 class EmailService {
     constructor() {
         this.transporter = nodemailer_1.default.createTransport({
@@ -42,6 +41,20 @@ class EmailService {
         // Enviar ambos correos
         await this.transporter.sendMail(userMessage);
         await this.transporter.sendMail(ccMessage);
+    }
+    async sendResetPasswordEmail(email, resetLink) {
+        const mailOptions = {
+            from: MAIL_USER_FROM,
+            to: email,
+            subject: "🔐 Restablece tu contraseña",
+            text: `Recibimos una solicitud para restablecer tu contraseña. Haz clic en el siguiente enlace:\n\n${resetLink}\n\nSi no solicitaste esto, ignora este mensaje.`,
+            html: `
+        <p>Recibimos una solicitud para restablecer tu contraseña.</p>
+        <p><a href="${resetLink}">Haz clic aquí para restablecerla</a></p>
+        <p>Si no solicitaste esto, puedes ignorar este mensaje.</p>
+      `,
+        };
+        await this.transporter.sendMail(mailOptions);
     }
 }
 exports.EmailService = EmailService;

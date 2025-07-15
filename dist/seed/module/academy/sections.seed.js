@@ -15,6 +15,7 @@ const sections_data_cloudflare_json_1 = __importDefault(require("./section-syste
 const sections_data_n8n_json_1 = __importDefault(require("./section-automatizacion/sections.data.n8n.json"));
 const sections_data_windows_json_1 = __importDefault(require("./section-system/sections.data.windows.json"));
 const sections_data_springboot_json_1 = __importDefault(require("./section-dev/sections.data.springboot.json"));
+const sections_data_flutter_json_1 = __importDefault(require("./section-mobile/sections.data.flutter.json"));
 // sections.data.springboot
 const seedAcademySection = async () => {
     const sectionRepo = data_source_1.AppDataSource.getRepository(section_entity_1.SectionEntity);
@@ -22,13 +23,15 @@ const seedAcademySection = async () => {
     const count = await sectionRepo.count();
     if (count === 0) {
         const allData = [
-            // dev
-            ...sections_data_whatsapp_json_1.default,
-            ...sections_data_springboot_json_1.default,
             // devops
             ...sections_data_aws_json_1.default,
             ...sections_data_azure_json_1.default,
             ...sections_data_cpanel_json_1.default,
+            // mobile
+            ...sections_data_flutter_json_1.default,
+            // dev
+            ...sections_data_whatsapp_json_1.default,
+            ...sections_data_springboot_json_1.default,
             // system
             ...sections_data_cloudflare_json_1.default,
             ...sections_data_n8n_json_1.default,
@@ -50,10 +53,10 @@ const seedAcademySection = async () => {
             });
             await sectionRepo.save(section);
         }
-        console.log("🌱 SectionSeeder seed complete ✅");
+        console.info("🌱 SectionSeeder seed complete ✅");
     }
     else {
-        console.log("ℹ️ SectionSeeder table already has data. Seed skipped.");
+        console.info("ℹ️ SectionSeeder table already has data. Seed skipped.");
     }
 };
 exports.seedAcademySection = seedAcademySection;

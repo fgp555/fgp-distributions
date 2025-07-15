@@ -2,8 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const authToken = (req, res, next) => {
     const { token } = req.headers;
-    console.log(req.headers);
-    console.log(token);
     // next();
     if (token === "autenticado")
         next();
