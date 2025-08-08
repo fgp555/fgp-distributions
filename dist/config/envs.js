@@ -1,12 +1,12 @@
 "use strict";
 // src/config/envs.ts
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ENV_WHATSAPP = exports.ENV_JWT = exports.ENV_GOOGLE = exports.ENV_DB = exports.ENV_MONGO = exports.USER_ENTITY = exports.ENABLE_FRONTEND = exports.PORT = void 0;
+exports.ENV_WHATSAPP = exports.ENV_JWT = exports.ENV_GOOGLE = exports.ENV_DB = exports.ENV_MONGO = exports.USE_MODULE = exports.ENABLE_FRONTEND = exports.PORT = void 0;
 const dotenv_1 = require("dotenv");
 (0, dotenv_1.config)({ path: ".env" });
 exports.PORT = process.env.PORT || 3000;
 exports.ENABLE_FRONTEND = process.env.ENABLE_FRONTEND ? process.env.ENABLE_FRONTEND === "true" : true;
-exports.USER_ENTITY = process.env.USER_ENTITY;
+exports.USE_MODULE = (process.env.USE_MODULE || "default").toLowerCase();
 exports.ENV_MONGO = {
     USE_IN_AUTH: process.env.MONGO_USE_IN_AUTH === "true",
     URI: process.env.MONGO_URI || "mongodb://localhost:27017/miapp",
@@ -44,7 +44,7 @@ exports.ENV_WHATSAPP = {
     PHONE_NUMBER_ID: process.env.WHATSAPP_PHONE_NUMBER_ID || "1234567890",
     TOKEN: process.env.WHATSAPP_TOKEN || "my_token",
 };
-console.info("USER_ENTITY: ", exports.USER_ENTITY);
+console.info("USE_MODULE: 🟢", exports.USE_MODULE);
 console.info("ENV_MONGO.USE_IN_AUTH: ", exports.ENV_MONGO.USE_IN_AUTH);
 console.info("DB_TYPE: ", exports.ENV_DB.DB_TYPE);
 console.info("DB_DATABASE: ", exports.ENV_DB.DB_DATABASE);

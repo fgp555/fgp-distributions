@@ -2,8 +2,8 @@
 // src/utils/countBoot.ts
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.countBoot = void 0;
-const data_source_1 = require("../config/data-source");
-const options_entity_1 = require("../module/options/options.entity");
+const typeOrmConfig_1 = require("../config/typeOrmConfig");
+const options_entity_1 = require("../common/options/entities/options.entity");
 const getTodayDateString = () => {
     const now = new Date();
     return now.toISOString().split("T")[0]; // YYYY-MM-DD
@@ -13,7 +13,7 @@ const getTimeString = () => {
     return now.toISOString(); // Fecha y hora completa en UTC
 };
 const countBoot = async () => {
-    const repo = data_source_1.AppDataSource.getRepository(options_entity_1.OptionsEntity);
+    const repo = typeOrmConfig_1.AppDataSource.getRepository(options_entity_1.OptionsEntity);
     const BOOT_KEY = "boot_counter";
     const BOOT_DATE_KEY = "boot_counter_date";
     const BOOT_TIME_KEY = "boot_last_time";
@@ -51,7 +51,7 @@ const countBoot = async () => {
         await repo.save(dateOpt);
     if (timeOpt)
         await repo.save(timeOpt);
-    console.info(`🔁 Boot count for ${today}: ${counterOpt.value}`);
+    // console.info(`🔁 Boot count for ${today}: ${counterOpt.value}`);
     console.info(`🕒 Last boot time: ${currentTime}`);
 };
 exports.countBoot = countBoot;

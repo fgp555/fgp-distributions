@@ -1,10 +1,10 @@
 "use strict";
+// src/config/mongoose.ts
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.connectMongo = void 0;
-// src/config/mongoose.ts
 const mongoose_1 = __importDefault(require("mongoose"));
 const envs_1 = require("./envs");
 const connectMongo = async () => {

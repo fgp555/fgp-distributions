@@ -19,25 +19,27 @@ const visit_middleware_1 = require("./middleware/visit.middleware");
 const setupFrontendFallback_1 = require("./utils/setupFrontendFallback");
 const envs_1 = require("./config/envs");
 // 📦 Rutas: Core funcionalidad
-const shortener_controller_1 = require("./module/shortener/shortener.controller");
-const academy_index_routes_1 = __importDefault(require("./module/academy/academy.index.routes"));
-const _index_routes_1 = __importDefault(require("./module/auth/_index.routes"));
-const email_routes_1 = __importDefault(require("./module/mail/email.routes"));
-const info_routes_1 = __importDefault(require("./module/info/info.routes"));
-const options_routes_1 = __importDefault(require("./module/options/options.routes"));
-const product_routes_1 = __importDefault(require("./module/store/product/product.routes"));
-const index_routes_1 = __importDefault(require("./module/project/index.routes"));
-const index_routes_2 = __importDefault(require("./module/shortener/index.routes"));
-const index_routes_3 = __importDefault(require("./module/stat/index.routes"));
-const visit_routes_1 = __importDefault(require("./module/visit/visit.routes"));
-const whatsapp_routes_1 = __importDefault(require("./module/whatsapp/whatsapp.routes"));
+const shortener_controller_1 = require("./common/shortener/shortener.controller");
+const _index_routes_1 = __importDefault(require("./auth/_index.routes"));
+const email_routes_1 = __importDefault(require("./common/mail/email.routes"));
+const info_routes_1 = __importDefault(require("./common/info/info.routes"));
+const options_routes_1 = __importDefault(require("./common/options/options.routes"));
+const index_routes_1 = __importDefault(require("./common/shortener/index.routes"));
+const index_routes_2 = __importDefault(require("./common/stat/index.routes"));
+const visit_routes_1 = __importDefault(require("./common/visit/visit.routes"));
+const whatsapp_routes_1 = __importDefault(require("./common/whatsapp/whatsapp.routes"));
+const academy_index_routes_1 = __importDefault(require("./modules/frankgp/academy/academy.index.routes"));
+const product_routes_1 = __importDefault(require("./modules/frankgp/ecommerce/product/product.routes"));
+const index_routes_3 = __importDefault(require("./modules/frankgp/project/index.routes"));
 // 🧪 Otros (DB, Seed)
-const database_routes_1 = __importDefault(require("./module/database/database.routes"));
-const mongoose_routes_1 = __importDefault(require("./module/database/mongoose/mongoose.routes"));
-// 👗 IvanaApps
-const _ivanaapps_routes_1 = __importDefault(require("./ivanaapps/_ivanaapps.routes"));
+const database_routes_1 = __importDefault(require("./common/database/database.routes"));
+const mongoose_routes_1 = __importDefault(require("./common/database/mongoose/mongoose.routes"));
+// 👗 ivanagb
+const _ivanagb_routes_1 = __importDefault(require("./modules/ivanagb/_ivanagb.routes"));
 // 🍽️ Restaurant
-const _restautant_routes_1 = __importDefault(require("./food-business/_restautant.routes"));
+const _restautant_routes_1 = __importDefault(require("./modules/systered/food/_restautant.routes"));
+// 👨‍💻 Systered
+const _contributions_routes_1 = __importDefault(require("./modules/systered/contributions/_contributions.routes"));
 // 🚀 Inicialización de app
 const app = (0, express_1.default)();
 // 🧾 Logging y CORS
@@ -64,15 +66,16 @@ app.use(passport_1.default.initialize());
 app.use(passport_1.default.session());
 // 🚏 Rutas API Modules
 app.use("/api", _index_routes_1.default);
-app.use("/api", _ivanaapps_routes_1.default);
+app.use("/api", _ivanagb_routes_1.default);
 app.use("/api", _restautant_routes_1.default);
+app.use("/api", _contributions_routes_1.default);
 // 🚏 Rutas API
 app.use("/api/email", email_routes_1.default);
-app.use("/api/shortener", index_routes_2.default);
+app.use("/api/shortener", index_routes_1.default);
 app.use("/api/info", info_routes_1.default);
 app.use("/api/options", options_routes_1.default);
-app.use("/api/projects", index_routes_1.default);
-app.use("/api/stat", index_routes_3.default);
+app.use("/api/projects", index_routes_3.default);
+app.use("/api/stat", index_routes_2.default);
 app.use("/api/visits", visit_routes_1.default);
 app.use("/api/whatsapp", whatsapp_routes_1.default);
 app.use("/api/product", product_routes_1.default);
