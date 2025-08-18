@@ -5,15 +5,15 @@
   "type": "commonjs",
   "scripts": {
     "nodemon": "npx nodemon",
-    "start": "node dist/main.js",
+    "start": "node backend/main.js",
     "dev": "npx nodemon",
     "start:node": "ts-node src/main.ts",
     "start:dev": "ts-node-dev --respawn src/main.ts",
     "mono": "nodemon --exec ts-node ./mono/mono.ts",
-    "build": "node scripts/clean-dist.js && tsc",
+    "build": "node scripts/clean-backend.js && tsc",
     "build2": "tsc",
-    "seed": "ts-node src/seed/seeder.ts",
-    "deploy": "cd ../frankgp-dist && git add . && git commit --amend --no-edit && git push --force"
+    "seed": "ts-node src/modules/systered/progresar/seeders/DatabaseSeeder.ts",
+    "deploy": "cd ../fgp-distributions && git add . && git commit --amend --no-edit && git push --force"
   },
   "dependencies": {
     "@nestjs/mapped-types": "*",
