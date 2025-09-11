@@ -9,29 +9,40 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WardrobeCategoryEntity = void 0;
+exports.EmailEntity = void 0;
 const typeorm_1 = require("typeorm");
-const item_entity_1 = require("./item.entity");
-let WardrobeCategoryEntity = class WardrobeCategoryEntity {
+let EmailEntity = class EmailEntity {
 };
-exports.WardrobeCategoryEntity = WardrobeCategoryEntity;
+exports.EmailEntity = EmailEntity;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], WardrobeCategoryEntity.prototype, "id", void 0);
+], EmailEntity.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ unique: true }),
+    (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], WardrobeCategoryEntity.prototype, "name", void 0);
+], EmailEntity.prototype, "name", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], EmailEntity.prototype, "email", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], EmailEntity.prototype, "subject", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: "text" }),
+    __metadata("design:type", String)
+], EmailEntity.prototype, "message", void 0);
 __decorate([
     (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
-], WardrobeCategoryEntity.prototype, "nameES", void 0);
+], EmailEntity.prototype, "currentUrl", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => item_entity_1.WardrobeItemEntity, (item) => item.category),
-    __metadata("design:type", Array)
-], WardrobeCategoryEntity.prototype, "items", void 0);
-exports.WardrobeCategoryEntity = WardrobeCategoryEntity = __decorate([
-    (0, typeorm_1.Entity)("wardrobe_categories")
-], WardrobeCategoryEntity);
-//# sourceMappingURL=category.entity.js.map
+    (0, typeorm_1.CreateDateColumn)(),
+    __metadata("design:type", Date)
+], EmailEntity.prototype, "sentAt", void 0);
+exports.EmailEntity = EmailEntity = __decorate([
+    (0, typeorm_1.Entity)("common_email")
+], EmailEntity);
+//# sourceMappingURL=email.entity.js.map

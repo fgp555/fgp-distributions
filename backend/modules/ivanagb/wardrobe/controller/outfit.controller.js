@@ -6,8 +6,22 @@ class WardrobeOutfitController {
     constructor() {
         this.service = new outfit_service_1.WardrobeOutfitService();
         this.getAll = async (req, res) => {
-            const data = await this.service.getAll();
-            res.json(data);
+            const page = parseInt(req.query.page || "1");
+            const limit = parseInt(req.query.limit || "10");
+            // delegamos al service con paginación
+            const { results, totalItems } = await this.service.getAll(page, limit);
+            const totalPages = Math.ceil(totalItems / limit);
+            res.json({
+                success: true,
+                pagination: {
+                    page,
+                    totalPages,
+                    hasMore: page < totalPages,
+                    limit,
+                },
+                totalItems,
+                results,
+            });
         };
         this.getById = async (req, res) => {
             const id = parseInt(req.params.id);

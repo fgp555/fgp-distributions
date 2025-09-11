@@ -38,6 +38,10 @@ __decorate([
     __metadata("design:type", String)
 ], WardrobeUserEntity.prototype, "password", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ default: "/uploads/demo_icon-user.webp" }),
+    __metadata("design:type", String)
+], WardrobeUserEntity.prototype, "photo", void 0);
+__decorate([
     (0, typeorm_1.Column)({ default: "user" }),
     __metadata("design:type", String)
 ], WardrobeUserEntity.prototype, "role", void 0);

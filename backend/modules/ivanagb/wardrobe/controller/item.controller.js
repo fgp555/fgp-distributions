@@ -29,7 +29,7 @@ class WardrobeItemController {
         try {
             // 👇 si hay archivo, añadimos su ruta a req.body
             if (req.file) {
-                req.body.imageUrl = `/uploads/${req.file.filename}`;
+                req.body.image = `/uploads/${req.file.filename}`;
             }
             const item = await service.create(req.body);
             res.status(201).json(item);
@@ -45,7 +45,7 @@ class WardrobeItemController {
                 return res.status(400).json({ status: "error", message: "Invalid ID" });
             }
             if (req.file) {
-                req.body.imageUrl = `/uploads/${req.file.filename}`;
+                req.body.image = `/uploads/${req.file.filename}`;
             }
             const item = await service.update(id, req.body);
             if (!item) {
