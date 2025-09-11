@@ -72,4 +72,4 @@ class UsersSQLService {
     }
 }
 exports.UsersSQLService = UsersSQLService;
-//# sourceMappingURL=user.sql.service.js.map
+//# sourceMappingURL=user.service.js.map

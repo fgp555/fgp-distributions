@@ -5,18 +5,18 @@ const typeOrmConfig_1 = require("../../../../config/typeOrmConfig");
 const category_entity_1 = require("../entities/category.entity");
 class WardrobeCategoryService {
     constructor() {
-        this.repo = typeOrmConfig_1.AppDataSource.getRepository(category_entity_1.WardrobeCategoryEntity);
+        this.categoryRepo = typeOrmConfig_1.AppDataSource.getRepository(category_entity_1.WardrobeCategoryEntity);
     }
     async getAll(query) {
         const { search = "", sortName = "ASC", limit = 10, page = 1 } = query;
-        const qb = this.repo.createQueryBuilder("category");
+        const qb = this.categoryRepo.createQueryBuilder("category");
         //.leftJoinAndSelect("category.items", "items");
         // ✅ Filtro por nombre
         if (search) {
             qb.where("category.name LIKE :search", { search: `%${search}%` });
         }
         // ✅ Ordenar por nombre
-        qb.orderBy("category.name", sortName.toUpperCase() === "DESC" ? "DESC" : "ASC");
+        qb.orderBy("category.id", sortName.toUpperCase() === "DESC" ? "DESC" : "ASC");
         // ✅ Paginación
         const take = Number(limit) || 10;
         const skip = (Number(page) - 1) * take;
@@ -32,24 +32,24 @@ class WardrobeCategoryService {
         };
     }
     async getById(id) {
-        return await this.repo.findOne({
+        return await this.categoryRepo.findOne({
             where: { id },
             // relations: ["items"], // incluye items de la categoría
         });
     }
     async create(dto) {
-        const category = this.repo.create(dto);
-        return await this.repo.save(category);
+        const category = this.categoryRepo.create(dto);
+        return await this.categoryRepo.save(category);
     }
     async update(id, dto) {
-        const category = await this.repo.findOneBy({ id });
+        const category = await this.categoryRepo.findOneBy({ id });
         if (!category)
             return null;
         Object.assign(category, dto);
-        return await this.repo.save(category);
+        return await this.categoryRepo.save(category);
     }
     async delete(id) {
-        const result = await this.repo.delete(id);
+        const result = await this.categoryRepo.delete(id);
         return result.affected !== 0;
     }
 }

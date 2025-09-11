@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersController = void 0;
 const error_middleware_1 = require("../../middleware/error.middleware");
-const user_sql_service_1 = require("../service/user.sql.service");
-const service = new user_sql_service_1.UsersSQLService();
+const user_service_1 = require("../service/user.service");
+const service = new user_service_1.UsersSQLService();
 class UsersController {
     async getAll(req, res, next) {
         try {

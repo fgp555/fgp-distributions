@@ -77,6 +77,20 @@ class WardrobeUserController {
             next(err);
         }
     }
+    async updatePhoto(req, res, next) {
+        try {
+            const { id } = req.params;
+            const file = req.file;
+            const { username } = req.body;
+            if (!file)
+                throw new error_middleware_1.AppError("No file uploaded", 400);
+            const updatedUser = await service.updatePhoto(id, `/uploads/${file.filename}`);
+            res.json({ success: true, user: updatedUser });
+        }
+        catch (err) {
+            next(err);
+        }
+    }
 }
 exports.WardrobeUserController = WardrobeUserController;
 //# sourceMappingURL=user.controller.js.map

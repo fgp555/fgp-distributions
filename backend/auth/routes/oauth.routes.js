@@ -13,18 +13,14 @@ if (envs_1.ENV_GOOGLE.CLIENT_ID) {
     passport_1.default.use(new passport_google_oauth20_1.Strategy({
         clientID: envs_1.ENV_GOOGLE.CLIENT_ID,
         clientSecret: envs_1.ENV_GOOGLE.CLIENT_SECRET,
-        callbackURL: envs_1.ENV_GOOGLE.CALLBACK_URL,
+        callbackURL: envs_1.ENV_GOOGLE.SERVER_URL + "/api/oauth/callback",
     }, async (accessToken, refreshToken, profile, done) => {
         return done(null, profile); // lo usamos como req.user
     }));
 }
 const controller = new oauth_controller_1.OAuthController();
 const router = (0, express_1.Router)();
-router.get("/login", passport_1.default.authenticate("google", { scope: ["profile", "email"] })
-//
-);
-router.get("/callback", passport_1.default.authenticate("google", { session: false, failureRedirect: envs_1.ENV_GOOGLE.CLIENT_URL + "/auth/login" }
-//
-), controller.googleCallback);
+router.get("/authorize", passport_1.default.authenticate("google", { scope: ["profile", "email"] }));
+router.get("/callback", passport_1.default.authenticate("google", { session: false, failureRedirect: envs_1.ENV_GOOGLE.CLIENT_URL + "/failureRedirect" }), controller.googleCallback);
 exports.default = router;
 //# sourceMappingURL=oauth.routes.js.map

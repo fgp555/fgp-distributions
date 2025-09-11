@@ -27,6 +27,8 @@ const shortener_sql_seeder_1 = require("../common/shortener/_seed/shortener.sql.
 const wardrobe_seeder_1 = require("../modules/ivanagb/wardrobe/seed/wardrobe.seeder");
 const user_entity_2 = require("../modules/ivanagb/wardrobe/entities/user.entity");
 const _wardrobe_entities_1 = require("../modules/ivanagb/wardrobe/entities/_wardrobe.entities");
+const feedback_entity_1 = require("../common/feedback/entities/feedback.entity");
+const email_entity_1 = require("../common/mail/entities/email.entity");
 function selectUserEntity() {
     switch (envs_1.USE_MODULE) {
         case "wardrobe_module":
@@ -47,6 +49,8 @@ function getEntitiesByMode() {
             return [
                 user_entity_1.UserEntity,
                 product_entity_1.ProductEntity,
+                feedback_entity_1.FeedbackEntity,
+                email_entity_1.EmailEntity,
                 ..._academy_entities_1.academy_entities,
                 ..._proyect_entities_1.project_entities,
                 ..._wardrobe_entities_1.wardrobe_entities, //

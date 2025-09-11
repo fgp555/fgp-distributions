@@ -23,30 +23,20 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], WardrobeItemEntity.prototype, "name", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], WardrobeItemEntity.prototype, "size", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], WardrobeItemEntity.prototype, "color", void 0);
+], WardrobeItemEntity.prototype, "description", void 0);
 __decorate([
     (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
-], WardrobeItemEntity.prototype, "brand", void 0);
+], WardrobeItemEntity.prototype, "image", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: true }),
-    __metadata("design:type", String)
-], WardrobeItemEntity.prototype, "imageUrl", void 0);
-__decorate([
-    (0, typeorm_1.ManyToOne)(() => category_entity_1.WardrobeCategoryEntity, category => category.items, { eager: true }),
+    (0, typeorm_1.ManyToOne)(() => category_entity_1.WardrobeCategoryEntity, (category) => category.items, { eager: true }),
     (0, typeorm_1.JoinColumn)({ name: "category_id" }),
     __metadata("design:type", category_entity_1.WardrobeCategoryEntity)
 ], WardrobeItemEntity.prototype, "category", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => user_entity_1.WardrobeUserEntity, user => user.items),
+    (0, typeorm_1.ManyToOne)(() => user_entity_1.WardrobeUserEntity, (user) => user.items, {
+        onDelete: "CASCADE",
+    }),
     (0, typeorm_1.JoinColumn)({ name: "user_id" }),
     __metadata("design:type", user_entity_1.WardrobeUserEntity)
 ], WardrobeItemEntity.prototype, "user", void 0);

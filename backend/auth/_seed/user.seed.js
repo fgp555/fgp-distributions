@@ -14,8 +14,8 @@ const getUsers = async () => {
         {
             name: "User Tester",
             username: "user",
-            email: "user@gmail.com",
-            password: await hashedPass("user@gmail.com"),
+            email: "ana123@gmail.com",
+            password: await hashedPass("ana123@gmail.com"),
             role: user_entity_1.UserRoleEnum.USER,
         },
         {

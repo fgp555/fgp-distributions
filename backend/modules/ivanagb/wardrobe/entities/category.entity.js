@@ -24,7 +24,11 @@ __decorate([
     __metadata("design:type", String)
 ], WardrobeCategoryEntity.prototype, "name", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => item_entity_1.WardrobeItemEntity, item => item.category),
+    (0, typeorm_1.Column)({ nullable: true }),
+    __metadata("design:type", String)
+], WardrobeCategoryEntity.prototype, "nameES", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => item_entity_1.WardrobeItemEntity, (item) => item.category),
     __metadata("design:type", Array)
 ], WardrobeCategoryEntity.prototype, "items", void 0);
 exports.WardrobeCategoryEntity = WardrobeCategoryEntity = __decorate([

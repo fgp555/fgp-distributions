@@ -35,7 +35,7 @@ const typeOrmConfig = {
     dropSchema: envs_1.ENV_DB.DROPSCHEMA,
     logging: ["error"],
     entities,
-    migrations: ["dist/migrations/*{.ts,.js}"],
+    migrations: ["backend/migrations/*{.ts,.js}"],
     subscribers: [],
     ssl: envs_1.ENV_DB.DB_SSL,
 };

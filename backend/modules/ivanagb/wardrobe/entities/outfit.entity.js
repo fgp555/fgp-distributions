@@ -29,7 +29,9 @@ __decorate([
     __metadata("design:type", String)
 ], WardrobeOutfitEntity.prototype, "description", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => user_entity_1.WardrobeUserEntity, user => user.outfits),
+    (0, typeorm_1.ManyToOne)(() => user_entity_1.WardrobeUserEntity, user => user.outfits, {
+        onDelete: "CASCADE"
+    }),
     __metadata("design:type", user_entity_1.WardrobeUserEntity)
 ], WardrobeOutfitEntity.prototype, "user", void 0);
 __decorate([

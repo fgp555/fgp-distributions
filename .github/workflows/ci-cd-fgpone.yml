@@ -1,9 +1,9 @@
 name: Deploy Node.js App to EC2
 
 on:
-  # workflow_dispatch: # 👈 Activación manual
-  push:
-    branches: [main]
+  workflow_dispatch: # 👈 Activación manual
+  # push:
+  #   branches: [main]
 
 jobs:
   deploy:
@@ -19,6 +19,6 @@ jobs:
             cd /home/ec2-user/fgp-distributions
             git pull --rebase
             npm install
-            pm2 restart myappfgp || pm2 start dist/main.js --name myappfgp
+            pm2 restart main || pm2 start backend/main.js --name main
             pm2 save
 

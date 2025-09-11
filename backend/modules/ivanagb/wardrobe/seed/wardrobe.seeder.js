@@ -48,82 +48,186 @@ async function wardrobeSeeder() {
     const itemRepo = dataSource.getRepository(item_entity_1.WardrobeItemEntity);
     const outfitRepo = dataSource.getRepository(outfit_entity_1.WardrobeOutfitEntity);
     // 1) Admin demo user
-    const adminPassword = await bcrypt.hash("admin@gmail.com", 10);
-    const admin = userRepo.create({
-        name: "Admin 001",
-        username: "admin001",
+    const admin0Password = await bcrypt.hash("admin@gmail.com", 10);
+    const admin0 = userRepo.create({
+        _id: "64b167e5-a2a0-4cf0-896c-e14585ad2000",
+        name: "Admin 123",
+        username: "admin",
         email: "admin@gmail.com",
-        password: adminPassword,
+        password: admin0Password,
         role: "admin",
         isActive: true,
+        photo: "/uploads/demo/logo-mixmatch.webp",
     });
-    await userRepo.save(admin);
+    await userRepo.save(admin0);
+    const admin1Password = await bcrypt.hash("ivanagbarreto@gmail.com", 10);
+    const admin1 = userRepo.create({
+        _id: "64b167e5-a2a0-4cf0-896c-e14585ad2111",
+        name: "Ivana Geraldine",
+        username: "ivanagbarreto",
+        email: "ivanagbarreto@gmail.com",
+        password: admin1Password,
+        role: "admin",
+        isActive: true,
+        photo: "/uploads/demo/logo-mixmatch.webp",
+    });
+    await userRepo.save(admin1);
+    const admin2Password = await bcrypt.hash("fgp555@gmail.com", 10);
+    const admin2 = userRepo.create({
+        _id: "64b167e5-a2a0-4cf0-896c-e14585ad2222",
+        name: "Frank GP",
+        username: "fgp555",
+        email: "fgp555@gmail.com",
+        password: admin2Password,
+        role: "admin",
+        isActive: true,
+        photo: "/uploads/demo/logo-mixmatch.webp",
+    });
+    await userRepo.save(admin2);
     // 2) Normal demo user
-    const passwordHash = await bcrypt.hash("user@gmail.com", 10);
+    const passwordHash = await bcrypt.hash("ana123@gmail.com", 10);
     const user = userRepo.create({
-        name: "User 007",
-        username: "user007",
-        email: "user@gmail.com",
+        _id: "87370890-320c-4f1f-9318-6f8345504b74",
+        name: "Ana Sofia",
+        username: "ana123",
+        email: "ana123@gmail.com",
         password: passwordHash,
         role: "user",
         isActive: true,
+        photo: "/uploads/demo/icon-user.jpg",
     });
     await userRepo.save(user);
     // 3) Categories
     const categories = categoryRepo.create([
-        { name: "Shirts" },
-        { name: "Pants" },
-        { name: "Shoes" },
-        { name: "Accessories" },
+        { id: 1, name: "Tops", nameES: "Tops" },
+        { id: 2, name: "Bottoms", nameES: "Bottoms" },
+        { id: 3, name: "Accessories", nameES: "Accesorios" },
     ]);
     await categoryRepo.save(categories);
     // 4) Items for the normal user
-    const [shirts, pants, shoes, accessories] = categories;
-    const items = itemRepo.create([
+    const [Tops, Bottoms, Accessories] = categories;
+    const dataItems = itemRepo.create([
+        // Tops
         {
-            name: "White shirt",
-            size: "M",
-            color: "White",
-            brand: "Zara",
-            imageUrl: "uploads/white-shirt.jpg",
-            category: shirts,
-            user: user,
+            description: "White Cotton T-Shirt",
+            image: "/uploads/demo/item_top1.jpg",
+            category: Tops,
         },
         {
-            name: "Blue jeans",
-            size: "32",
-            color: "Blue",
-            brand: "Levis",
-            imageUrl: "uploads/blue-jeans.jpg",
-            category: pants,
-            user: user,
+            description: "Blue Denim Shirt",
+            image: "/uploads/demo/item_top2.jpg",
+            category: Tops,
         },
         {
-            name: "Nike Air Sneakers",
-            size: "42",
-            color: "Black",
-            brand: "Nike",
-            imageUrl: "uploads/nike-air.jpg",
-            category: shoes,
-            user: user,
+            description: "Black Hoodie",
+            image: "/uploads/demo/item_top3.jpg",
+            category: Tops,
         },
         {
-            name: "Casio Watch",
-            size: "One size",
-            color: "Silver",
-            brand: "Casio",
-            imageUrl: "uploads/casio-watch.jpg",
-            category: accessories,
-            user: user,
+            description: "Red Polo Shirt",
+            image: "/uploads/demo/item_top4.jpg",
+            category: Tops,
+        },
+        {
+            description: "Striped Long Sleeve",
+            image: "/uploads/demo/item_top5.jpg",
+            category: Tops,
+        },
+        {
+            description: "Green Sports Jersey",
+            image: "/uploads/demo/item_top6.jpg",
+            category: Tops,
+        },
+        {
+            description: "Classic White Dress Shirt",
+            image: "/uploads/demo/item_top7.jpg",
+            category: Tops,
+        },
+        // Bottoms
+        {
+            description: "Blue Slim Jeans",
+            image: "/uploads/demo/item_bottom1.jpg",
+            category: Bottoms,
+        },
+        {
+            description: "Black Chino Pants",
+            image: "/uploads/demo/item_bottom2.jpg",
+            category: Bottoms,
+        },
+        {
+            description: "Gray Sweatpants",
+            image: "/uploads/demo/item_bottom3.jpg",
+            category: Bottoms,
+        },
+        {
+            description: "Beige Cargo Pants",
+            image: "/uploads/demo/item_bottom4.jpg",
+            category: Bottoms,
+        },
+        {
+            description: "Navy Shorts",
+            image: "/uploads/demo/item_bottom5.jpg",
+            category: Bottoms,
+        },
+        {
+            description: "Black Tailored Trousers",
+            image: "/uploads/demo/item_bottom6.jpg",
+            category: Bottoms,
+        },
+        {
+            description: "White Tennis Shorts",
+            image: "/uploads/demo/item_bottom7.jpg",
+            category: Bottoms,
+        },
+        // Accessories
+        {
+            description: "Nike Air Sneakers",
+            image: "/uploads/demo/item_accesory1.png",
+            category: Accessories,
+        },
+        {
+            description: "Casio Watch",
+            image: "/uploads/demo/item_accesory2.png",
+            category: Accessories,
+        },
+        {
+            description: "Ray-Ban Sunglasses",
+            image: "/uploads/demo/item_accesory3.png",
+            category: Accessories,
+        },
+        {
+            description: "Leather Wallet",
+            image: "/uploads/demo/item_accesory4.png",
+            category: Accessories,
+        },
+        {
+            description: "Adidas Backpack",
+            image: "/uploads/demo/item_accesory5.png",
+            category: Accessories,
         },
     ]);
-    await itemRepo.save(items);
+    // await itemRepo.save(dataItems);
+    // obtenemos todos los usuarios
+    const allUsers = await userRepo.find();
+    // para cada user, creamos sus items
+    for (const u of allUsers) {
+        const userItems = dataItems.map((b) => itemRepo.create({ ...b, user: u }));
+        await itemRepo.save(userItems);
+        // opcional: outfit demo para cada user
+        const outfit = outfitRepo.create({
+            name: "Casual Friday",
+            description: "A relaxed look for Friday",
+            user: u,
+            items: userItems,
+        });
+        await outfitRepo.save(outfit);
+    }
     // 5) Demo outfit
     const outfit = outfitRepo.create({
         name: "Casual Friday",
         description: "A relaxed look for Friday",
         user: user,
-        items: items,
+        items: dataItems,
     });
     await outfitRepo.save(outfit);
     console.log("✅ Seeder executed: Virtual wardrobe with demo data inserted (includes admin)");

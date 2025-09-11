@@ -3,9 +3,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthController = void 0;
 const error_middleware_1 = require("../../middleware/error.middleware");
-const auth_sql_service_1 = require("../service/auth.sql.service");
+const auth_service_1 = require("../service/auth.service");
 // const service = new AuthMongoDBService();
-const service = new auth_sql_service_1.AuthSQLService();
+const service = new auth_service_1.AuthSQLService();
 class AuthController {
     async me(req, res, next) {
         try {

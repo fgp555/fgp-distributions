@@ -44,6 +44,10 @@
     { "backHalf": "snippets", "destination": "https://marketplace.visualstudio.com/items/?itemName=frankgp.frankgp" },
     { "backHalf": "meet", "destination": "https://meet.google.com/cxt-umrz-xwj" },
     { "backHalf": "mega", "destination": "https://mega.nz/folder/rPIRxbjJ#b2LbcriqBfiRnXTpDz5Qpg" },
+    {
+        "backHalf": "mixmatch",
+        "destination": "https://play.google.com/store/apps/details?id=com.ivanageraldine.mixymatch"
+    },
     { "backHalf": "wub", "destination": "https://sordum.org/downloads/?st-windows-update-blocker" },
     { "backHalf": "supremo", "destination": "https://supremocontrol.com/es/descarga-supremo/windows" },
     { "backHalf": "flex", "destination": "https://the-echoplex.net/flexyboxes/" },
@@ -56,6 +60,6 @@
     { "backHalf": "websocket", "destination": "https://youtube.com/playlist?list=PL3YxD430E0w01DgKNgDujcCihXIXvsO6Q" },
     { "backHalf": "graphql", "destination": "https://youtube.com/playlist?list=PL3YxD430E0w3lDpzJGu123hxq9paNyp6m" },
     { "backHalf": "golang", "destination": "https://youtube.com/playlist?list=PL5yyAJBD5MOMczdIJegoD9r1Sq8UmK-cR" },
-    { "backHalf": "rn-playlist", "destination": "https://youtube.com/playlist?list=PLKS2lx6kjJ67zT5D9KYqYpMLbGyH5rctW" },
-    { "backHalf": "fastapi", "destination": "https://youtube.com/playlist?list=PLjALbVkFErEMZChFfEerbeYzWLnJXuagM" }
+    { "backHalf": "fastapi", "destination": "https://youtube.com/playlist?list=PLjALbVkFErEMZChFfEerbeYzWLnJXuagM" },
+    { "backHalf": "rn-playlist", "destination": "https://youtube.com/playlist?list=PLKS2lx6kjJ67zT5D9KYqYpMLbGyH5rctW" }
 ]

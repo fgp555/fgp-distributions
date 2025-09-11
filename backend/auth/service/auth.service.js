@@ -56,7 +56,7 @@ class AuthSQLService {
                     ? [user_entity_1.RolesEnum.Collaborator]
                     : [user_entity_1.RolesEnum.User];
         const userPayload = {
-            sub: findEmail._id,
+            _id: findEmail._id,
             userId: findEmail._id,
             email: findEmail.email,
             roles: userRoles,
@@ -169,4 +169,4 @@ class AuthSQLService {
     }
 }
 exports.AuthSQLService = AuthSQLService;
-//# sourceMappingURL=auth.sql.service.js.map
+//# sourceMappingURL=auth.service.js.map

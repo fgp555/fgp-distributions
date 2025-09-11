@@ -15,9 +15,10 @@ const storage = multer_1.default.diskStorage({
         cb(null, uploadPath);
     },
     filename: (req, file, cb) => {
-        const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+        const username = req.body.username || "anonymous";
+        const uniqueSuffix = Date.now();
         const ext = path_1.default.extname(file.originalname);
-        cb(null, file.fieldname + "-" + uniqueSuffix + ext);
+        cb(null, username + "-" + uniqueSuffix + ext);
     },
 });
 exports.upload = (0, multer_1.default)({ storage });

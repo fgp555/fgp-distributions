@@ -34,9 +34,13 @@ __decorate([
     __metadata("design:type", String)
 ], WardrobeUserEntity.prototype, "name", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
 ], WardrobeUserEntity.prototype, "password", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: true }),
+    __metadata("design:type", String)
+], WardrobeUserEntity.prototype, "photo", void 0);
 __decorate([
     (0, typeorm_1.Column)({ default: "user" }),
     __metadata("design:type", String)

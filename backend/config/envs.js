@@ -1,13 +1,14 @@
 "use strict";
 // src/config/envs.ts
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ENV_WHATSAPP = exports.ENV_JWT = exports.ENV_GOOGLE = exports.ENV_DB = exports.ENV_MONGO = exports.SERVER_URL = exports.USE_MODULE = exports.ENABLE_FRONTEND = exports.PORT = void 0;
+exports.ENV_WHATSAPP = exports.ENV_JWT = exports.ENV_GOOGLE = exports.ENV_DB = exports.ENV_MONGO = exports.DELETE_IMAGES_USERS = exports.SERVER_URL = exports.USE_MODULE = exports.ENABLE_FRONTEND = exports.PORT = void 0;
 const dotenv_1 = require("dotenv");
 (0, dotenv_1.config)({ path: ".env" });
 exports.PORT = process.env.PORT || 3000;
 exports.ENABLE_FRONTEND = process.env.ENABLE_FRONTEND ? process.env.ENABLE_FRONTEND === "true" : true;
 exports.USE_MODULE = (process.env.USE_MODULE || "default").toLowerCase();
 exports.SERVER_URL = process.env.SERVER_URL || `http://localhost:${exports.PORT}`;
+exports.DELETE_IMAGES_USERS = process.env.DELETE_IMAGES_USERS === "true";
 exports.ENV_MONGO = {
     USE_IN_AUTH: process.env.MONGO_USE_IN_AUTH === "true",
     URI: process.env.MONGO_URI || "mongodb://localhost:27017/miapp",
@@ -28,7 +29,7 @@ exports.ENV_DB = {
 exports.ENV_GOOGLE = {
     SERVER_URL: process.env.SERVER_URL,
     CLIENT_URL: process.env.CLIENT_URL,
-    CALLBACK_URL: process.env.GOOGLE_SERVER_URL + "/api/oauth/callback",
+    MOBILE_SCHEME: process.env.MOBILE_SCHEME,
     CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
     CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
 };

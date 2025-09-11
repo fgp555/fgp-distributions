@@ -31,6 +31,7 @@ const whatsapp_routes_1 = __importDefault(require("./common/whatsapp/whatsapp.ro
 const academy_index_routes_1 = __importDefault(require("./modules/frankgp/academy/academy.index.routes"));
 const product_routes_1 = __importDefault(require("./modules/frankgp/ecommerce/product/product.routes"));
 const index_routes_3 = __importDefault(require("./modules/frankgp/project/index.routes"));
+const feedback_routes_1 = __importDefault(require("./common/feedback/routes/feedback.routes"));
 // 🧪 Otros (DB, Seed)
 const database_routes_1 = __importDefault(require("./system/database/database.routes"));
 const mongoose_routes_1 = __importDefault(require("./system/database/mongoose/mongoose.routes"));
@@ -68,6 +69,7 @@ app.use("/api", _index_routes_1.default);
 app.use("/api", _wardrobe_routes_1.default);
 app.use("/api", _restautant_routes_1.default);
 // 🚏 Rutas API
+app.use("/api/feedback", feedback_routes_1.default);
 app.use("/api/email", email_routes_1.default);
 app.use("/api/shortener", index_routes_1.default);
 app.use("/api/info", info_routes_1.default);
